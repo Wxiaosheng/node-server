@@ -23,6 +23,6 @@ server.on('request',function(request, response){
 })
 
 //3让Web服务器开始监听指定端口——开始上岗
-server.listen(9999, function(){
+server.listen(9090, function(){
     console.log('Web服务器开始监听客户端请求')
 })
