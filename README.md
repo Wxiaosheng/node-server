@@ -16,9 +16,9 @@
 
 
 
-#在搭建 node 服务器中遇见的问题
+# 在搭建 node 服务器中遇见的问题
 
-##1、node 服务器在 localhost 能够访问而工网IP不能访问？
+## 1、node 服务器在 localhost 能够访问而工网IP不能访问？
     请参照[]
     netstat -lnp        查看端口占用情况
         Netstat 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。
@@ -35,7 +35,7 @@
         -c 每隔一个固定时间，执行该netstat命令。
         提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到
 
-##2、当用户断开或者关闭命令行，则对应的脚本也终止了，即此时是无法访问当前的 node 服务器的
+## 2、当用户断开或者关闭命令行，则对应的脚本也终止了，即此时是无法访问当前的 node 服务器的
     最简单的办法：
         $ nohup node app.js &
 
