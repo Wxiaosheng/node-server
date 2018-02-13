@@ -10,7 +10,6 @@ var server = http.createServer();
 //2让Web服务器能够处理客户端连接请求——岗前培训
 server.on('request',function(request, response){
     console.log('Web服务器接收到一个HTTP请求');
-    console.log('Web服务器开始构建响应消息');
 
     //设置响应状态码 和 响应头部
     response.writeHead(200, {
@@ -24,5 +23,5 @@ server.on('request',function(request, response){
 
 //3让Web服务器开始监听指定端口——开始上岗
 server.listen(9090, '0.0.0.0', function(){
-    console.log('Web服务器开始监听客户端请求')
+    console.log('Web服务器开始监听9090端口')
 })
