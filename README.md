@@ -14,12 +14,15 @@
 
 这是就起好了当前的 node 服务器，并且可以通过你的工网IP访问，并且得到结果
 
+eg: 这是我的node服务器，可以简单的看下效果
+    [http://106.15.201.255:9090/](http://106.15.201.255:9090/)
+
 
 
 # 在搭建 node 服务器中遇见的问题
 
 ## 1、node 服务器在 localhost 能够访问而工网IP不能访问？
-    请参照[]
+    [请参照]
     netstat -lnp        查看端口占用情况
         Netstat 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。
     常见参数

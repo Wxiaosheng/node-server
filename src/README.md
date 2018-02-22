@@ -2,6 +2,19 @@
 
 ## 文件操作模块：
     fs 模块：
+        一组类似 UNIX（POSIX）标准的文件操作API。
+        异步和同步
+            文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。
+        打开文件
+            fs.open(path, flags[, mode], callback)
+                path - 文件的路径。
+                flags - 文件打开的行为。具体值详见下文。
+                mode - 设置文件模式(权限)，文件创建默认权限为 0666(可读，可写)。
+                callback - 回调函数，带有两个参数如：callback(err, fd)。
+        获取文件信息
+            fs.stat(path, callback)
+                path - 文件路径。
+                callback - 回调函数，带有两个参数如：(err, stats), stats 是 fs.Stats 对象。
 
 ## events 模块：
         // 1、引入 events 模块
@@ -106,8 +119,51 @@
 ## 模块系统
     模块是Node.js 应用程序的基本组成部分，文件和模块是一一对应的。
     换言之，一个 Node.js 文件就是一个模块，这个文件可能是JavaScript 代码、JSON 或者编译过的C/C++ 扩展。
-    
-    ![nodejs-require](./images/nodejs-require.jpg)
 
-    
+    ![nodejs-require](https://github.com/Wxiaosheng/node-server/blob/master/src/images/nodejs-require.jpg)
 
+## 路由
+    我们要为路由提供请求的 URL 和其他需要的 GET 及 POST 参数，随后路由需要根据这些数据来执行相应的代码。
+
+## 全局变量
+    JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。
+    __filename 表示当前正在执行的脚本的文件名。
+    __dirname 表示当前执行脚本所在的目录。
+    setTimeout(cb, ms) 全局函数在指定的毫秒(ms)数后执行指定函数(cb)。：setTimeout() 只执行一次指定函数。
+        返回一个代表定时器的句柄值。
+    clearTimeout( t ) 全局函数用于停止一个之前通过 setTimeout() 创建的定时器。 
+    setInterval(cb, ms) 全局函数在指定的毫秒(ms)数后执行指定函数(cb)。
+        返回一个代表定时器的句柄值。可以使用 clearInterval(t) 函数来清除定时器。
+    console 用于提供控制台标准输出:
+
+    process 它用于描述当前Node.js 进程状态的对象，提供了一个与操作系统的简单接口。
+        ...
+
+## 常用工具
+    util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心JavaScript 的功能 过于精简的不足。
+    util.inherits(constructor, superConstructor)是一个实现对象间原型继承 的函数。
+    util.inspect(object,[showHidden],[depth],[colors])是一个将任意对象转换 为字符串的方法，通常用于调试和错误输出。
+        showHidden 是一个可选参数，如果值为 true，将会输出更多隐藏信息。
+        depth 表示最大递归的层数，如果对象很复杂，你可以指定层数以控制输出信息的多少。如果不指定depth，默认会递归2层，指定为 null 表示将不限递归层数完整遍历对象。
+        如果color 值为 true，输出格式将会以ANSI 颜色编码，通常用于在终端显示更漂亮 的效果。
+    util.isArray(object)如果给定的参数 "object" 是一个数组返回true，否则返回false。
+    util.isRegExp(object)如果给定的参数 "object" 是一个正则表达式返回true，否则返回false。
+    util.isDate(object)如果给定的参数 "object" 是一个日期返回true，否则返回false。
+    util.isError(object)如果给定的参数 "object" 是一个错误对象返回true，否则返回false。
+
+
+## 第三方模块
+    mysql 模块：
+        连接数据库
+            var connection = mysql.createConnection({
+                host     : 'localhost',
+                user     : 'root',
+                password : '123456',
+                database : 'test'
+            });
+        不能连接到远程服务器上的数据库解决办法？（ER_HOST_NOT_PRIVILEGED）
+            ER_HOST_NOT_PRIVILEGED 表示 不允许将主机'%s'连接到该MySQL服务器。没有相应的权限
+            解决办法：
+                GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'xs993436' WITH GRANT OPTION;
+                FLUSH PRIVILEGES;
+                
