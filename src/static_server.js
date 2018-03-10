@@ -13,7 +13,6 @@ var server = http.createServer( (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*"); 
     var urlObj = url.parse(request.url);
     var route = urlObj.pathname.slice(1);
-    console.log(route)
     if(route === 'api'){
         console.log('动态请求')
         var post = '';
@@ -23,7 +22,6 @@ var server = http.createServer( (request, response) => {
         request.on('end', () => {
             console.log(post) 
             post = JSON.parse(post)
-            console.log(post.transCode + '表示 用户登录接口');
             routes(post, response);
             return ;
         });

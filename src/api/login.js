@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 
  var login = function(data, response) {
-    console.log(data)
     var { userName, pwd } = data;
     var resp = '';
     var connection = mysql.createConnection({
@@ -11,7 +10,6 @@ var mysql = require('mysql');
             database : 'bookbase'
         });
     var sql = `SELECT u_pwd FROM b_user where u_name='${userName}'`;
-    console.log(sql)
     connection.query(sql, (err, result) => {
         if(err){
             console.log(err)

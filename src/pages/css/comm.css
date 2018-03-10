@@ -62,19 +62,20 @@ p, ul, li {
 #fiction{
     text-align: center;
 }
-#fiction table{
+table{
     border-collapse:collapse;
     border: 1px solid black;
 }
- #fiction tr{
+ #fiction tr,#chapter tr{
     height: 55px;
     line-height: 55px;
     border: 1px solid black;
 }
-#fiction td{
+#fiction td, #chapter th{
     width: 100px;
     border: 1px solid black;
 }
-#fiction td:nth-child(2){
+#fiction td:nth-child(2), #chapter th:nth-child(2),#chapter td:nth-child(2){
     width: 500px;
 }
+
