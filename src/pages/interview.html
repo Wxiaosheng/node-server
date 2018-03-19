@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>interview questions</title>
+        <style>
+            pre{ color:darkgreen; }
+        </style>
+    </head>
+    <body>
+        <p>1、输入m，n参数，获取一个m长度的都是n的数组，不能用循环。</p>
+        <pre>
+        const change = (m, n) => {
+            const arr = new Array(m)
+            return arr.fill(n)
+        }
+        const change = (m, n) => Array.from({length:m}, () => n)
+        </pre>
+
+        <p>2、拍平数组，将一个多维数组转换成一个一维数组。</p>
+        <pre>
+        const flatten = (array) =>{
+            let flag = false
+            let a = []
+            array.forEach((item) => {
+                if (Array.isArray(item)){
+                    a = a.concat(item)
+                    flag = true
+                }else{
+                    a.push(item)
+                }
+            })
+            if (flag) return flatten(a) // 递归调用
+            return a
+        }
+        </pre>
+
+        <p>3、数组去重。</p>
+        <pre>
+        const filterDuplicate = (array) => {
+            const arr = []
+            const hash = {}
+            for(let i=0; i < array.length; i++){
+                if (!hash[array[i]]) {
+                    hash[array[i]] = true
+                    arr.push(array[i])
+                }
+            }
+            return arr
+        }
+        </pre>
+
+        <p>4、</p>
+
+        <script>
+            
+        </script>
+    </body>
+</html>
