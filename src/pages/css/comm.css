@@ -20,6 +20,9 @@ input:focus, textarea:focus,button:focus{
 a:hover{
     cursor: pointer;
 }
+h3{
+    text-align: center;
+}
 .show{
     display: block;
 }
@@ -95,9 +98,6 @@ a:hover{
 #manage{
     display: none;
 }
-#manage h3{
-    text-align: center;
-}
 #bookList{
     margin: 5px;
     border: 1px solid #666;
@@ -146,7 +146,7 @@ a:hover{
     background-color: #bbb;
 }
 /* 章节模态显示框 */
-#modal{
+#bookModal{
     display: none;
     position: fixed;
     width: 90%;
@@ -157,11 +157,33 @@ a:hover{
     left: 5%;
     padding: 5px;
 }
-#modal h3{
-    text-align: center;
+#bookModal label{
+    display: inline-block;
+    width:40%;
+    margin-left: 5%;
+    margin-top: 25px;
 }
-#chapter li{
-    
+#bookModal textarea{
+    width: 100%;
+    height:100px;
+}
+#add_book{
+    padding: 10px 30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 25px;
+    background-color: #bbb;
+}
+#modal{
+    display: none;
+    position: fixed;
+    width: 90%;
+    min-height: 500px;
+    top:200px;
+    background-color: #eee;
+    opacity: 1;
+    left: 5%;
+    padding: 5px;
 }
 #chapter li span{
     display: inline-block;
@@ -224,7 +246,7 @@ a:hover{
     margin-left: 20%;
     background-color: #bbb;
 }
-#closeModal{
+#closeModal, #closebookModal{
     position: absolute;
     top: 0px;
     right: 12px;

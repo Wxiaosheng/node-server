@@ -5,7 +5,8 @@ const addOrUpdata = require('../api/addOrUpdata')
 const getBooksBuUser = require('../api/getBooksByUser')
 const updateBookInfo = require('../api/updateBookInfo')
 const updateBookChapter = require('../api/updateBookChapter')
-const addBookChapter = require('../api/addBookChapter');
+const addBookChapter = require('../api/addBookChapter')
+const addBook = require('../api/addBook')
 
 
 var route = function(data, response) {
@@ -34,6 +35,9 @@ var route = function(data, response) {
             break;
         case '00109': // 新增章节
             addBookChapter(data, response);
+            break;
+        case '00110':
+            addBook(data, response);
             break;
 
     }

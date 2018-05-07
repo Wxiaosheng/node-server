@@ -51,6 +51,7 @@ document.getElementById('manage').onclick = (event) => {
 	const target = event.target
 	const eleClass = target.getAttribute('class')
 	const element = document.getElementById('bookList').getElementsByClassName('show')[0]
+	if(target.getAttribute('id') == 'addBook'){ document.getElementById('bookModal').style = 'display:block;' }
 	switch(eleClass){
 		case 'edit_book':
 			if(element){
@@ -88,7 +89,11 @@ const showChapter = (target) => {
 	}
 	tianzun.ajax(param, (data) => {
 		data = JSON.parse(data)
-		let tempHtml = '';
+		let tempHtml = `<li>
+                    <span>章节</span>
+                    <span>章节名</span>
+                    <span>操作</span>
+                </li>`
 		data.chapters.forEach( (chapter) => {
 			tempHtml += `
 			<li>
@@ -101,7 +106,7 @@ const showChapter = (target) => {
                     </div>
                 </li>`;
 		})
-		document.getElementById('chapter').innerHTML = document.getElementById('chapter').innerHTML + tempHtml;
+		document.getElementById('chapter').innerHTML = tempHtml
 	}, (err) => {
 		console.log(err)
 	})
@@ -154,9 +159,8 @@ const submitHandle = (target) => {
 	})
 }
 
-document.getElementById('closeModal').onclick = () => {
-	document.getElementById('modal').style = 'display:none;'
-}
+document.getElementById('closeModal').onclick = () => document.getElementById('modal').style = 'display:none;'
+document.getElementById('closebookModal').onclick = () => document.getElementById('bookModal').style = 'display:none;'
 
 const changeEditChapter = (event, flag) => {
 	const target = event.target;
@@ -191,8 +195,8 @@ document.getElementById('chapter').onclick = (event) => {
 		return changeEditChapter(event, 'cancel_chapter')
 	}
 	if(target.getAttribute('id') === 'save_info'){
-		let isEffective = true;
-		const target = event.target;
+		let isEffective = true
+		const target = event.target
 		const parent = target.parentNode.parentNode.parentNode;
 		const inputs = Array.from(parent.getElementsByTagName('input'))
 		const textarea = Array.from(parent.getElementsByTagName('textarea'))
@@ -222,8 +226,41 @@ document.getElementById('chapter').onclick = (event) => {
 	}
 }
 
+document.getElementById('add_book').onclick = (event) => {
+	let isEffective = true
+	const parent = event.target.parentNode.parentNode
+	const inputs = parent.getElementsByTagName('input')
+	const textarea = parent.getElementsByTagName('textarea')
+	const targets = Array.from(inputs).concat(Array.from(textarea)).map( 
+		(element) => {
+			if(!element.value) { isEffective=false }
+			return [element.name, element.value]
+		})
+	if(!isEffective){
+		return alert('请输入有效数据！！！')
+	}
+	const param = {
+		transCode: '00110',
+		info: {}
+	}
+	targets.forEach( (item) => {
+		if(item[0] === 'name'){ param[item[0]] = item[1] }
+		param.info[item[0]] = item[1]
+	})
+	tianzun.ajax(param, (data) => {
+		data = JSON.parse(data)
+		if(data.result){
+			return alert('保存成功！！！')
+		}
+	}, (err) => {
+		console.log(err)
+	})
+
+
+}
+
 document.getElementById('saveChapter').onclick = (event) => {
-	let isEffective = true;
+	let isEffective = true
 	const parent = document.getElementById('addChapter')
 	const inputs = parent.getElementsByTagName('input')
 	const textarea = parent.getElementsByTagName('textarea')

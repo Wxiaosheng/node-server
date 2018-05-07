@@ -1,23 +1,22 @@
-var mysql = require('mysql');
+const mysql_connect = require('./common/mysql_connect')
 
 var showchapters = function(data, response){
     var resp = {};
-    var connection = mysql.createConnection({
-            host     : '106.15.201.255',
-            user     : 'root',
-            password : '123456',
-            database : 'bookbase'
-        });
-    var sql = 'SELECT b_id,b_chapter,b_chapter_name FROM chapter;'
-    console.log(data.code)
-    if(data.code){
-        sql = 'SELECT b_chapter,b_chapter_name, info FROM chapter;'
-    }
-    console.log(sql)
+    var connection = mysql_connect();
+    var sql = `SELECT 
+            b_id as id,
+            b_chapter as chapter,
+            b_chapter_name as chapterName,
+            b_info as info
+        FROM 
+            book_chapter
+        WHERE
+            b_id=${data.id};`
+    
     connection.query(sql, (err, data) => {
         if (err) { console.log(err) }
-        resp.errorCode = '0';
-        resp.responseBody = {chapters: data}
+        resp.errorCode = '';
+        resp.chapters = data
         response.writeHead(200, {'Content-Type': 'application/json;charset=UTF-8'});
         response.end(JSON.stringify(resp));
     })

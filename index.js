@@ -1,10 +1,10 @@
 // 小说APP后台的入口
 //  var fs = require('fs');
-//  var http = require('http');
+  var http = require('http');
 //  var util = require('util');
   var mysql = require('mysql');
 //  var url = require('url');
-//  var querystring = require('querystring');
+  var querystring = require('querystring');
 
 //  var server = http.createServer(function(request, response){
 //      response.setHeader("Access-Control-Allow-Origin", "*"); 
@@ -34,24 +34,24 @@
 
  //server.listen(9999, () => console.log('开始监听9999端口'));
 
- var connection = mysql.createConnection({
-    host     : '106.15.201.255',
-    user     : 'root',
-    password : '123456',
-    database : 'bookbase'
-  });
+//  var connection = mysql.createConnection({
+//     host     : '106.15.201.255',
+//     user     : 'root',
+//     password : '123456',
+//     database : 'bookbase'
+//   });
 
-  connection.connect(function(err, result){
-      console.log(err)
-      console.log(result)
-  });
+//   connection.connect(function(err, result){
+//       console.log(err)
+//       console.log(result)
+//   });
 
-  var sql = 'SELECT * FROM books;'
-  connection.query(sql, function(err, result){
-    if(err){console.log(err)}
-    console.log(result);
-    //console.log(result[0])
-  })
+//   var sql = 'SELECT * FROM books;'
+//   connection.query(sql, function(err, result){
+//     if(err){console.log(err)}
+//     console.log(result);
+//     //console.log(result[0])
+//   })
 
 
 
@@ -117,3 +117,18 @@
 // console.log(__filename)
 // console.log(process.platform);
 // console.log(process.memoryUsage())
+
+
+// get 请求
+var https=require('https');  
+//get 请求外网  
+https.get('https://api.douban.com/v2/book/1220562',function(req,res){  
+    var html='';  
+    req.on('data',function(data){
+      console.log('----------')
+      html+=data;  
+    });  
+    req.on('end',function(){  
+        console.info(html);  
+    });  
+}); 
