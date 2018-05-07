@@ -1,7 +1,7 @@
 body{
-    width:980px;
+    width:1280px;
     margin: 0 auto;
-    background-color: darkseagreen;
+    background-color:#ccc;
 }
 p, ul, li, input{
     margin: 0;
@@ -12,9 +12,19 @@ input, textarea{
     border: 1px solid #ccc;
     padding: 3px;
     background: transparent;
+    resize:none;
 }
-input:focus, textarea:focus{
+input:focus, textarea:focus,button:focus{
     outline: none;
+}
+a:hover{
+    cursor: pointer;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
 }
 .form{
     width:80%;
@@ -36,36 +46,200 @@ input:focus, textarea:focus{
 .item input{
     width: 130px;
 }
-#submit{
-    display: block;
-    width:100px;
-    margin: auto;
-    margin-top: 100px;
-    height: 50px;
-    line-height: 50px;
-    background: #f7df08;
-    border-radius: 5px;
+
+/* manage */
+#box{
+    padding: 5px;
+    overflow: hidden;
+    margin-top: 20px;
 }
 
 #modules{
-    padding: 5px;
-    display: inline-block;
+    float: left;
+    width: 250px;
+    height: 800px;
+    background-color: #ddd;
+}
+#modules{
+    margin-right: 5px;
+    border: 1px solid #666;
 }
 #modules li{
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #666;
+}
+#content{
+    min-height: 500px;
+    background-color: #ddd;
+    overflow: hidden;
+}
+#welcome{
+    margin: 200px 0 0 200px;
+    background: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+    -webkit-background-clip: text;
+    color: transparent; 
+    font-size: 28px;
+    font-weight: bold;
+    display:  inline-block/*none;*/;
+}
+.closeForm{
+    float: right;
+    top: 0px;
+    right: 5px;
+    font-size: 30px;
+    padding: 0;
+    margin:0;
+    border:0;
+}
+#manage{
+    display: none;
+}
+#manage h3{
+    text-align: center;
+}
+#bookList{
+    margin: 5px;
+    border: 1px solid #666;
+}
+.book span{
     display: inline-block;
+    width: 32%;
+    text-align: center;
+    border-right: 1px solid #666;
+}
+.book span:last-child{
+    border-right: none;
+}
+.listTop{
+    height: 50px;
+    line-height: 50px;
+    border-bottom:  1px solid #666;
+}
+#bookInfo{
+    padding: 10px;
+    border-bottom:  1px solid #666;
+}
+#bookInfo input{
+    border: 1px solid rgba(6,6,6,0);
     width: 250px;
-    height: 200px;
-    background-color: aqua;
 }
-#modules li:nth-child(2){
-    background-color: seagreen;
+#bookInfo textarea{
+    width: 100%;
+    height: 100px ;
+    border: 1px solid rgba(6,6,6,0);
 }
-#modules li:nth-child(3){
-    background-color: coral;
+#bookInfo label a{
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 25px;
+    background-color: #bbb;
 }
-#modules li:nth-child(4){
-    background-color: greenyellow;
+#addBook{
+    float: right;
+    padding: 5px 20px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-right: 5px;
+    background-color: #bbb;
 }
+/* 章节模态显示框 */
+#modal{
+    display: none;
+    position: fixed;
+    width: 90%;
+    min-height: 500px;
+    top:200px;
+    background-color: #eee;
+    opacity: 1;
+    left: 5%;
+    padding: 5px;
+}
+#modal h3{
+    text-align: center;
+}
+#chapter li{
+    
+}
+#chapter li span{
+    display: inline-block;
+    width: 32%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+#chapter li span input{
+    border:1px solid rgba(6,6,6,0);
+    text-align: center;
+}
+#chapter li textarea{
+    width: 90%;
+    margin:5px 0 0 30px;
+    height:250px;
+}
+#chapter .chapter_info{
+    display: none;
+}
+#chapter .chapter_info div{
+    width: 500px;
+    margin:auto;
+}
+#chapter .chapter_info div a{
+   display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin: 50px;
+    background-color: #bbb;
+}
+
+#addChapter{
+    display: none;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    background-color: #ddd;
+}
+#addChapter lable{
+    margin-left: 100px;
+}
+#addChapter input{
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #666;
+}
+#addChapter textarea{
+    margin-left: 150px;
+    border: 1px solid #666;
+    width: 80%;
+    height:250px;
+}
+#addChapter label a{
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 20%;
+    background-color: #bbb;
+}
+#closeModal{
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    font-size: 30px;
+}
+#add_chapter{
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    padding: 10px 30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #bbb;
+}
+
 
 #fiction{
     text-align: center;

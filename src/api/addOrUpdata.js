@@ -1,12 +1,14 @@
 var mysql = require('mysql');
 
+var constant = require('../constant/constant')
+
 function addOrUpdata(data, response){
     console.log(data.type)
     var connect = mysql.createConnection({
-        host     : '106.15.201.255',
-        user     : 'root',
-        password : '123456',
-        database : 'bookbase'
+        host     : constant.DB_HOST_NAME,
+        user     : constant.DB_USER,
+        password : constant.DB_PWD,
+        database : constant.DB_NAME
     })
     var sql = '';
     if(data.type == 'add'){

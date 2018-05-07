@@ -20,7 +20,6 @@ var server = http.createServer( (request, response) => {
             post += chunk;
         })
         request.on('end', () => {
-            console.log(post) 
             post = JSON.parse(post)
             routes(post, response);
             return ;

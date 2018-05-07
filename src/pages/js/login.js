@@ -12,7 +12,8 @@ sub.onclick = function(){
         pwd: pwd
     }
     tianzun.ajax(param, function(data){
-        console.log(data);
+        data = JSON.parse(data)
+        if( data.errCode == 1) location.href = 'manage.html'
     },function(error){
         console.log(error)
     })

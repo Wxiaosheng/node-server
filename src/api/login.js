@@ -1,20 +1,14 @@
-var mysql = require('mysql');
+const mysql_connect = require('./common/mysql_connect')
 
  var login = function(data, response) {
     var { userName, pwd } = data;
     var resp = '';
-    var connection = mysql.createConnection({
-            host     : '106.15.201.255',
-            user     : 'root',
-            password : '123456',
-            database : 'bookbase'
-        });
+    var connection = mysql_connect();
     var sql = `SELECT u_pwd FROM b_user where u_name='${userName}'`;
     connection.query(sql, (err, result) => {
         if(err){
             console.log(err)
         }
-        console.log(result)
         if(result.length < 1){
             resp = JSON.stringify({
                 errCode: 0,
