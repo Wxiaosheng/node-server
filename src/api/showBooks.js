@@ -17,6 +17,7 @@ var showBooks = function(data, response){
             a.b_id=b.b_id;`
     connection.query(sql, (err, result) => {
         if(err) { console.log(err) }
+        console.log(result)
         resp.errCode = '';
         resp.books = result;
         response.writeHead(200, {'Content-Type': 'application/json;charset=UTF-8'});

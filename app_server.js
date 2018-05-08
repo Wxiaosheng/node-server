@@ -13,6 +13,7 @@ var server = http.createServer( (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*"); 
     var urlObj = url.parse(request.url);
     var route = urlObj.pathname.slice(1);
+    console.log(route)
     if(route === 'api'){
         var post = '';
         request.on('data', (chunk) => {
