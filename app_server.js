@@ -26,6 +26,7 @@ var server = http.createServer( (request, response) => {
         return ;
     }
     var extName = getExtendName(urlObj.pathname);
+    console.log(extName)
     var contentType = 'text/html;charset=UTF-8';
     switch (extName){
         case 'jpg':
@@ -56,6 +57,7 @@ var server = http.createServer( (request, response) => {
             response.end(`本网站不支持${extName}格式的文件！`);
             return ;
     }
+    console.log(`${__dirname}${urlObj.pathname}`)
     var buffer = fs.readFileSync(`${__dirname}${urlObj.pathname}`);
     response.writeHead(200, {
         'Content-Type': contentType,
@@ -74,4 +76,4 @@ function getExtendName(str) {
     return str.slice(index+1);
 }
 
-server.listen('9999', () => console.log('start'));
+server.listen(9999, '0.0.0.0', () => console.log('start'));
