@@ -13,7 +13,6 @@ var server = http.createServer( (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*"); 
     var urlObj = url.parse(request.url);
     var route = urlObj.pathname.slice(1);
-    console.log(route)
     if(route === 'api'){
         var post = '';
         request.on('data', (chunk) => {
@@ -27,7 +26,6 @@ var server = http.createServer( (request, response) => {
         return ;
     }
     var extName = getExtendName(urlObj.pathname);
-    console.log(extName)
     var contentType = 'text/html;charset=UTF-8';
     switch (extName){
         case 'jpg':
@@ -58,7 +56,6 @@ var server = http.createServer( (request, response) => {
             response.end(`本网站不支持${extName}格式的文件！`);
             return ;
     }
-    console.log(`${__dirname}${urlObj.pathname}`)
     var buffer = fs.readFileSync(`${__dirname}${urlObj.pathname}`);
     response.writeHead(200, {
         'Content-Type': contentType,

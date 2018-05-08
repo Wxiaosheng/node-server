@@ -10,7 +10,6 @@ const addBook = require('../api/addBook')
 
 
 var route = function(data, response) {
-    console.log(data)
     const transCode = data.transCode;
     switch(transCode) {
         case '00102': // 登录接口
