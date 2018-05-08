@@ -77,7 +77,7 @@ h3{
     background-color: #ddd;
     overflow: hidden;
 }
-#welcome{
+#welcome,#otherBox{
     margin: 200px 0 0 200px;
     background: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
     -webkit-background-clip: text;

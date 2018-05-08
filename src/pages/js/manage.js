@@ -1,5 +1,6 @@
 document.getElementById('nelorManage').onclick = function(event){
 	document.getElementById('welcome').style = 'display:none;'
+	document.getElementById('otherBox').style = 'display:none;'
 	document.getElementById('manage').style = 'display:block;'
 	if(event.target.getAttribute('class') === 'active'){ return }
 	const hasActive = event.target.parentNode.getElementsByClassName('active')[0]
@@ -12,7 +13,7 @@ document.getElementById('nelorManage').onclick = function(event){
 	}
 	tianzun.ajax(param, (data) => {
 		data = JSON.parse(data)
-		let html = "<ul id='bookList'>"
+		let html = `<a id='addBook'>新增书籍</a><h3>书籍列表</h3><ul id='bookList'>`
 		if(data.books){
 			data.books.forEach((book, index) => {
 				html += `
@@ -41,7 +42,7 @@ document.getElementById('nelorManage').onclick = function(event){
 			})
 		}
 		html += "</ul>";
-		document.getElementById('manage').innerHTML = document.getElementById('manage').innerHTML + html;
+		document.getElementById('manage').innerHTML = html;
 	}, (err) => {
 		console.log(err)
 	})
@@ -292,11 +293,12 @@ document.getElementById('saveChapter').onclick = (event) => {
 	})
 }
 
-document.getElementById('add_chapter').onclick = () => {
-	document.getElementById('addChapter').style = 'display:block;'
-}
-document.getElementById('cancel_add').onclick = () => {
-	document.getElementById('addChapter').style = 'display:none;'
+document.getElementById('add_chapter').onclick = () => document.getElementById('addChapter').style = 'display:block;'
+document.getElementById('cancel_add').onclick = () => document.getElementById('addChapter').style = 'display:none;'
+document.getElementById('other').onclick = (event) => {
+	document.getElementById('welcome').style = 'display:none;'
+	document.getElementById('manage').style = 'display:none;'
+	document.getElementById('otherBox').style = 'display:inline-block;'
 }
 
 

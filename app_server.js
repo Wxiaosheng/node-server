@@ -7,7 +7,7 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
-var routes = require('./route/route');
+var routes = require('./src/route/route');
 
 var server = http.createServer( (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*"); 
