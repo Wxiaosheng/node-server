@@ -18,6 +18,11 @@ eg: 这是我的node服务器，可以简单的看下效果
     [http://106.15.201.255:9090/](http://106.15.201.255:9090/)
 
 
+# FreeNoler 后台管理系统
+
+## 1、后台功能简介
+    welcome 页面
+    ![welcome][/images/welcome.png]
 
 # 在搭建 node 服务器中遇见的问题
 
