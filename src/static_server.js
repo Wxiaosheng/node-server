@@ -74,4 +74,4 @@ function getExtendName(str) {
     return str.slice(index+1);
 }
 
-server.listen('9999', () => console.log('start'));
+server.listen(9999, '0.0.0.0', () => console.log('start'));
