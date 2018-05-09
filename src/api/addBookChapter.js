@@ -3,7 +3,7 @@ const mysql_connect = require('./common/mysql_connect')
 function addBookChapter(data, response){
 	const connect = mysql_connect();
 	let completeDate = true;
-	const resp = {}
+	let resp = {}
 	if(!data.id || !data.info.chapter || !data.info.chapter_name || !data.info.info){
 		completeDate = false;
 	}

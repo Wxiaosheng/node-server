@@ -6,7 +6,8 @@ function mysql_connect(){
 	        host     : constant.DB_HOST_NAME,
 	        user     : constant.DB_USER,
 	        password : constant.DB_PWD,
-	        database : constant.DB_NAME
+	        database : constant.DB_NAME,
+	        multipleStatements: true // 支持执行多条 sql 语句
 	});
 	return connection
 }

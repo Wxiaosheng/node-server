@@ -90,7 +90,12 @@ const showChapter = (target) => {
 	}
 	tianzun.ajax(param, (data) => {
 		data = JSON.parse(data)
-		let tempHtml = `<li>
+		let tempHtml = `
+		  <a id='closeModal'> &times;</a>
+            <button id='add_chapter'>添加章节</button>
+            <h3>${data.bookName}</h3>
+            <ul id='chapter'>
+                <li>
                     <span>章节</span>
                     <span>章节名</span>
                     <span>操作</span>
@@ -103,11 +108,18 @@ const showChapter = (target) => {
                     <span class='edit_chapter'><a class='edit_chapter'>编辑</a></span>
                     <div class="chapter_info">
                         <textarea name="info" id="info" >${chapter.info}</textarea>
-                    <div><a id='save_info' data-id='${chapter.id}' >保存</a><a class='cancel_chapter'>取消</a></div>
+                    <div><a id='save_info' data-id='${data.id}' >保存</a><a class='cancel_chapter'>取消</a></div>
                     </div>
                 </li>`;
 		})
-		document.getElementById('chapter').innerHTML = tempHtml
+		tempHtml += `</ul>
+            <form id="addChapter">
+                <lable>章节：<input type="text" name='chapter'></lable>
+                <lable>章节名：<input type="text" name='chapter_name'></lable><br/><br/>
+                <lable>内容：<br/><textarea name='info'></textarea> </lable><br/>
+                <label><a id='saveChapter' data-id='${data.id}'>保存</a><a id='cancel_add'>取消</a></label>
+            </form>`
+		document.getElementById('modal').innerHTML = tempHtml
 	}, (err) => {
 		console.log(err)
 	})
@@ -160,7 +172,26 @@ const submitHandle = (target) => {
 	})
 }
 
-document.getElementById('closeModal').onclick = () => document.getElementById('modal').style = 'display:none;'
+document.getElementById('modal').onclick = (event) => {
+	const id = event.target.getAttribute('id')
+	switch(id){
+		case 'closeModal':
+			document.getElementById('modal').style = 'display:none;'
+			break;
+		case 'chapter':
+			handleChapter(event)
+			break;
+		case 'saveChapter':
+			save_chapter(event)
+			break;
+		case 'add_chapter':
+			document.getElementById('addChapter').style = 'display:block;'
+			break;
+		case 'cancel_add':
+			document.getElementById('addChapter').style = 'display:none;'
+			break;
+	}
+}
 document.getElementById('closebookModal').onclick = () => document.getElementById('bookModal').style = 'display:none;'
 
 const changeEditChapter = (event, flag) => {
@@ -188,7 +219,7 @@ const changeEditChapter = (event, flag) => {
 	}
 }
 
-document.getElementById('chapter').onclick = (event) => {
+const handleChapter = (event) => {
 	if(event.target.getAttribute('class') === 'edit_chapter'){
 		return changeEditChapter(event, 'edit_chapter')
 	}
@@ -250,9 +281,14 @@ document.getElementById('add_book').onclick = (event) => {
 	})
 	tianzun.ajax(param, (data) => {
 		data = JSON.parse(data)
-		if(data.result){
-			return alert('保存成功！！！')
+		if(data.errCode === '0000'){
+			return alert('保存失败请重试！！！')
 		}
+		if(data.hasErrorInfo){
+			return alert(data.hasErrorInfo)
+		}
+		targets.forEach( (element) => element.value = '' )
+		return alert('保存成功！！！')
 	}, (err) => {
 		console.log(err)
 	})
@@ -260,7 +296,7 @@ document.getElementById('add_book').onclick = (event) => {
 
 }
 
-document.getElementById('saveChapter').onclick = (event) => {
+const save_chapter = (event) => {
 	let isEffective = true
 	const parent = document.getElementById('addChapter')
 	const inputs = parent.getElementsByTagName('input')
@@ -287,14 +323,13 @@ document.getElementById('saveChapter').onclick = (event) => {
 		if(data.hasErrorInfo){
 			return alert(data.hasErrorInfo)
 		}
+		targets.forEach( (element) => element.value = '' )
 		return alert('保存成功！！！')
 	}, (err) => {
 		console.log(err)
 	})
 }
 
-document.getElementById('add_chapter').onclick = () => document.getElementById('addChapter').style = 'display:block;'
-document.getElementById('cancel_add').onclick = () => document.getElementById('addChapter').style = 'display:none;'
 document.getElementById('other').onclick = (event) => {
 	document.getElementById('welcome').style = 'display:none;'
 	document.getElementById('manage').style = 'display:none;'
