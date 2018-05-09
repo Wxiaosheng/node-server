@@ -174,6 +174,9 @@ const submitHandle = (target) => {
 
 document.getElementById('modal').onclick = (event) => {
 	const id = event.target.getAttribute('id')
+	const className = event.target.getAttribute('class')
+	if(className == 'edit_chapter'){ changeEditChapter(event, 'edit_chapter') }
+	if(className == 'cancel_chapter'){ changeEditChapter(event, 'cancel_chapter') }
 	switch(id){
 		case 'closeModal':
 			document.getElementById('modal').style = 'display:none;'
